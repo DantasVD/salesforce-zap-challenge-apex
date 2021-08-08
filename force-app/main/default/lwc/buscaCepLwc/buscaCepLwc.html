@@ -1,0 +1,86 @@
+<template>
+    <lightning-button variant="brand"
+       label="Consultar CEP"
+       title="Consultar CEP"
+       onclick={openModal}
+       class="slds-m-left_x-small">
+    </lightning-button>
+    
+
+
+    <template if:true={isModalOpen}>
+        
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Consulta de CEP</h2>
+                </header>
+
+
+                <template if:true={isEnterCep}>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div>
+                            <h2>Entre o CEP</h2>
+                            <lightning-input 
+                                            type="string" 
+                                            name="input1" 
+                                            label="CEP" 
+                                            value={buscaCEP} 
+                                            onchange={changeBusca}
+                                            required 
+                            >
+                            </lightning-input>
+                        </div>
+                        
+                        <button class="slds-button slds-button_brand" onclick={consultaCep} title="OK">OK</button>
+                    </div>
+                </template>
+                
+                <template if:true={isSubmit}>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <div class="slds-grid slds-gutters">
+                            <h2>Endereço</h2>
+                            <div class="slds-col slds-size_1-of-3">
+                                <div class="slds-m-top_medium slds-m-bottom_x-large">
+                                    <div class="slds-p-around_medium lgc-bg">
+                                        <lightning-input type="text" label="Cidade" value={viacepModel.localidade} disabled></lightning-input>
+                                        <lightning-input type="text" label="IBGE" value={viacepModel.ibge} disabled></lightning-input>
+                                        <lightning-input type="text" label="GIA" value={viacepModel.gia} disabled></lightning-input>
+                                        <lightning-input type="text" label="DDD" value={viacepModel.ddd} disabled></lightning-input>
+                                        <lightning-input type="text" label="SIAFI" value={viacepModel.siafi} disabled></lightning-input>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <div class="slds-m-top_medium slds-m-bottom_x-large">
+                                    <div class="slds-p-around_medium lgc-bg">
+                                        <lightning-input type="text" label="Bairro" value={viacepModel.bairro} disabled></lightning-input>
+                                        <lightning-input type="text" label="CEP" value={viacepModel.cep} disabled></lightning-input>
+                                        <lightning-input type="text" label="Complemento" value={viacepModel.complemento} disabled></lightning-input>
+                                        <lightning-input type="text" label="UF" value={viacepModel.uf} disabled></lightning-input>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        <button class="slds-button slds-button_brand" onclick={saveOnAccount} title="OK">Salvar</button>
+                    </div>
+                </template>
+                
+
+                <footer class="slds-modal__footer slds-float_center">
+                    <button class="slds-button slds-button_neutral slds-float_center" onclick={closeModal} title="Cancel" >Cancel</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+ </template>
