@@ -1,18 +1,28 @@
-# Salesforce DX Project: Next Steps
+# Desafio grupo ZAP CRM
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Pequeno componente em lwc para consultar e armazenar dados de uma api na conta.
 
-## How Do You Plan to Deploy Your Changes?
+## Abordagem escolhida
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Foi criado um componente em lwc que é apenas um botão e abre um modal que funciona em 2 fases sendo a primeira a fase de inserção do CEP e consulta a segunda apenas uma visualização do retorno com um botão para salvar.
 
-## Configure Your Salesforce DX Project
+## Classes utilizadas e seus objetivos
+* BuscaCepController - Classe de controller do lwx utilizada para isolar e realizar a interação da tela com o código apex
+* ViacepModel - Classe de model para realizar o parse do retorno da requisição e facilitar o trabalho de tratamento de dados além de poder ser reutilizada em qualquer outro local      do sistema que queira utilizar o mesmo tipo de dados vindo da api do viacep.
+* BuscaCepCallout - Classe de callout feita pra isolar a requisição facilitando assim a reutilização da mesma
+* AccountService - Classe de serviço para conta
+* Accounts - Classe de domínio para a conta
+* AccountsSelector - Classe de Selector para a conta
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+# Observações
+  * Foram utilizadas classes da fflib
+  * Foi utilizado unity of work na service para casos futuros de alteração em massa de contas do mesmo CEP tenhamos maior controle sobre os sucessos e falhas na atualização de dados
+  
+ 
 
-## Read All About It
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+
+## Referências 
+
+- [Camada de domínio e selector](https://trailhead.salesforce.com/pt-BR/content/learn/modules/apex_patterns_dsl)
+- [Camada de serviço](https://trailhead.salesforce.com/pt-BR/content/learn/modules/apex_patterns_sl)
